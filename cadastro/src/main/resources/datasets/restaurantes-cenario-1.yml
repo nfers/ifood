@@ -1,8 +1,0 @@
-restaurante:
-	- ID: 123
-	  NOME: "NOVO RESTAURANTE TEST"
-	  PROPRIETARIO: "ID do keyclock"
-	- ID: 345
-	  NOME: "NOVO RESTAURANTE TEST 2"
-	  PROPRIETARIO: "ID do keyclock 2"
-	  

@@ -25,12 +25,12 @@ public class RestauranteResourceTest {
 
 	@Test
 	@DataSet("restaurantes-cenario-1.yml")
-	private void testCriar() {
+	public void testBuscarRestaurantes() {
 		String resultado = given().when().get("/restaurantes").then().statusCode(200).extract().asString();
 
 		Approvals.verifyJson(resultado);
 	}
 
-
+	
 
 }
