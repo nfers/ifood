@@ -64,8 +64,7 @@ public class RestauranteResource {
     	
     	restauranteOp.ifPresentOrElse(Restaurante::delete, () -> {
     		throw new NotFoundException();
-    	}
-    	);
+    	});
     	
     }
     
