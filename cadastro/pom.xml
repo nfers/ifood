@@ -13,7 +13,6 @@
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.14.2.Final</quarkus.platform.version>
-    <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
     <testFailureIgnore>true</testFailureIgnore>
   </properties>
@@ -67,6 +66,40 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.database-rider</groupId>
+      <artifactId>rider-core</artifactId>
+      <version>1.13.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.database-rider</groupId>
+      <artifactId>rider-cdi</artifactId>
+      <version>1.13.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>stax</groupId>
+      <artifactId>stax</artifactId>
+      <version>1.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.approvaltests</groupId>
+      <artifactId>approvaltests</artifactId>
+      <version>4.0.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
