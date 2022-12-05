@@ -10,6 +10,8 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.PUT;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -29,8 +31,10 @@ public class RestauranteResource {
     
     @POST
     @Transactional
-    public void criar(Restaurante dto) {
+    public Response criar(Restaurante dto) {
     	dto.persist();
+    	
+    	return Response.status(Status.CREATED).build();
     }
     
     @PUT
@@ -63,5 +67,44 @@ public class RestauranteResource {
     	}
     	);
     	
+    }
+    
+    
+    
+    @GET
+    @Path("{idRestaurante}/pratos")
+    public List<Restaurante> buscarPratos(@PathParam("idRestaurante") Long idRestaurante) {
+    	Optional<PanacheEntityBase> restauranteOp = Restaurante.findByIdOptional(idRestaurante);
+        
+    	if(restauranteOp.isEmpty()) {
+    		throw new NotFoundException("Restaurante Não Localizado");
+    	}
+    	
+    	
+    	return Prato.list("restaurante", restauranteOp.get());
+    }
+    
+    @POST
+    @Path("{idRestaurante}/pratos")
+    @Transactional
+    public Response criarPrato(@PathParam("idRestaurante") Long idRestaurante, Prato dto) {
+    	Optional<Restaurante> restauranteOp = Restaurante.findByIdOptional(idRestaurante);
+        
+    	if(restauranteOp.isEmpty()) {
+    		throw new NotFoundException("Restaurante Não Localizado");
+    	}
+    	
+    	Prato prato = new Prato();
+    	
+    	prato.nome = dto.nome;
+    	prato.descricao = dto.descricao;
+    	prato.preco = dto.preco;
+    	
+    	prato.restaurante = restauranteOp.get();
+    	
+    	
+    	dto.persist();
+    	
+    	return Response.status(Status.CREATED).build();
     }
 }
